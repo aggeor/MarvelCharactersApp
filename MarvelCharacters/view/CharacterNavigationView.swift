@@ -14,8 +14,7 @@ struct CharacterNavigationView: View {
     @StateObject var characterViewModel =  CharacterListViewModel()
     var body: some View {
         NavigationView {
-            
-            let characters=characterViewModel.characters?.filter{!$0.thumbnail!.path!.contains("image_not_available")}
+            let characters=characterViewModel.characters
             if(characterViewModel.characters != []){
                 ScrollView{
                     Text("Characters")
@@ -43,6 +42,11 @@ struct CharacterNavigationView: View {
                                         .padding()
                                 }
                             }
+                            .task {
+                                if (characterViewModel.hasReachedEnd(of: character)){
+                                    characterViewModel.fetchNext()
+                                }
+                            }
                             
                             .background(.clear)
                             .cornerRadius(20)
@@ -58,7 +62,7 @@ struct CharacterNavigationView: View {
             }
         }
         .onAppear{
-            characterViewModel.fetch()
+            characterViewModel.fetchFirst()
         }
         
     }
