@@ -52,8 +52,6 @@ class CharacterListViewModel: ObservableObject{
             }
             do{
                 let jsonCharacterDataWrapper = try JSONDecoder().decode(CharacterDataWrapper.self, from: data)
-                
-                print(jsonCharacterDataWrapper)
                 DispatchQueue.main.async{
                     let nextCharacters: [Character]?=(jsonCharacterDataWrapper.data?.results)!
                     if(nextCharacters != nil){

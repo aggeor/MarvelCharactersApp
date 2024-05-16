@@ -16,40 +16,13 @@ struct DetailView: View {
     
     var body: some View {
         ZStack{
-            AsyncImage(
-                url: URL(string: thumbnailPath)!,
-                transaction: Transaction(
-                    animation: .spring(
-                        response: 0.5,
-                        dampingFraction: 0.65,
-                        blendDuration: 0.025)
-                )
-            ){ phase in
-                switch phase {
-                case .success(let image):
-                    image
-                        .resizable()
-                        .scaledToFill()
-                    //                        .transition(.move(edge: .trailing))
-                        .ignoresSafeArea()
-                    
-                case .failure(_):
-                    ProgressView()
-                        .frame(alignment: .center)
-                    
-                case .empty:
-                    ProgressView()
-                        .frame(alignment: .center)
-                    
-                @unknown default:
-                    ProgressView()
-                        .frame(alignment: .center)
-                }
-            }
-            .aspectRatio(contentMode: .fill)
-            .overlay(
-                LinearGradient(colors: [.black, .clear], startPoint: .top, endPoint: .bottom)
-            )
+            NetworkImage(url: thumbnailPath)
+                .scaledToFill()
+                                        .ignoresSafeArea()
+                                        .aspectRatio(contentMode: .fill)
+                                        .overlay(
+                                            LinearGradient(colors: [.black, .clear], startPoint: .top, endPoint: .bottom)
+                                        )
             VStack{
                 Spacer()
                 ComicsCarouselView(characterId: characterId)

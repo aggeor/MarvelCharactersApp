@@ -29,12 +29,11 @@ struct CharacterNavigationView: View {
                             let characterId = Int(character.id ?? 0)
                             NavigationLink(destination: DetailView(characterName:characterName ?? "",thumbnailPath: thumbnailPath,characterId: characterId)){
                                 ZStack{
-                                    AsyncImage(url: URL(string:thumbnailPath),
-                                               scale: 3)
-                                    .aspectRatio(contentMode: .fill)
-                                    .scaledToFit()
-                                    .frame(width: 180, height: 220)
-                                    .overlay(LinearGradient(colors: [.black, .clear], startPoint: .bottom, endPoint: .top))
+                                    NetworkImage(url: thumbnailPath)
+                                        .scaledToFill()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 180, height: 220)
+                                        .overlay(LinearGradient(colors: [.black, .clear], startPoint: .bottom, endPoint: .top))
                                     Text("\(character.name ?? "")")
                                         .foregroundColor(.white)
                                         .font(.system(size: 18, weight: .medium,design: .rounded))

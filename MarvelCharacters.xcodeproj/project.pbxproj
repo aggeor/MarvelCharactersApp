@@ -15,6 +15,8 @@
 		18055E8E2BF0D5DE0094D8FC /* CharacterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18055E8D2BF0D5DE0094D8FC /* CharacterListViewModel.swift */; };
 		18055E912BF0D9E50094D8FC /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18055E902BF0D9E50094D8FC /* Character.swift */; };
 		18055E942BF1118D0094D8FC /* ComicsCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18055E932BF1118D0094D8FC /* ComicsCarouselView.swift */; };
+		183A78BA2BF6513B00CA8A4F /* CacheAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A78B92BF6513B00CA8A4F /* CacheAsyncImage.swift */; };
+		183A78BC2BF65A8C00CA8A4F /* NetworkImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183A78BB2BF65A8C00CA8A4F /* NetworkImage.swift */; };
 		186F1C622BF2745C00A2ADC2 /* ComicWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186F1C612BF2745C00A2ADC2 /* ComicWebView.swift */; };
 		186F1C642BF2754600A2ADC2 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186F1C632BF2754600A2ADC2 /* Services.swift */; };
 		186F1C662BF2771E00A2ADC2 /* Comic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186F1C652BF2771E00A2ADC2 /* Comic.swift */; };
@@ -32,6 +34,8 @@
 		18055E902BF0D9E50094D8FC /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		18055E922BF0FBA20094D8FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		18055E932BF1118D0094D8FC /* ComicsCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsCarouselView.swift; sourceTree = "<group>"; };
+		183A78B92BF6513B00CA8A4F /* CacheAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheAsyncImage.swift; sourceTree = "<group>"; };
+		183A78BB2BF65A8C00CA8A4F /* NetworkImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkImage.swift; sourceTree = "<group>"; };
 		186F1C612BF2745C00A2ADC2 /* ComicWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicWebView.swift; sourceTree = "<group>"; };
 		186F1C632BF2754600A2ADC2 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		186F1C652BF2771E00A2ADC2 /* Comic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Comic.swift; path = ../../../../../.Trash/Comic.swift; sourceTree = "<group>"; };
@@ -68,6 +72,7 @@
 		18055E5B2BF0CD940094D8FC /* MarvelCharacters */ = {
 			isa = PBXGroup;
 			children = (
+				183A78B82BF6512600CA8A4F /* CacheAsyncImage */,
 				18055E922BF0FBA20094D8FC /* Info.plist */,
 				18055E602BF0CD950094D8FC /* Assets.xcassets */,
 				18055E5C2BF0CD940094D8FC /* MarvelCharactersApp.swift */,
@@ -115,6 +120,15 @@
 				186F1C652BF2771E00A2ADC2 /* Comic.swift */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		183A78B82BF6512600CA8A4F /* CacheAsyncImage */ = {
+			isa = PBXGroup;
+			children = (
+				183A78B92BF6513B00CA8A4F /* CacheAsyncImage.swift */,
+				183A78BB2BF65A8C00CA8A4F /* NetworkImage.swift */,
+			);
+			path = CacheAsyncImage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,9 +207,11 @@
 				18055E8B2BF0CF850094D8FC /* CharacterNavigationView.swift in Sources */,
 				18055E912BF0D9E50094D8FC /* Character.swift in Sources */,
 				18055E5D2BF0CD940094D8FC /* MarvelCharactersApp.swift in Sources */,
+				183A78BA2BF6513B00CA8A4F /* CacheAsyncImage.swift in Sources */,
 				186F1C642BF2754600A2ADC2 /* Services.swift in Sources */,
 				18055E8E2BF0D5DE0094D8FC /* CharacterListViewModel.swift in Sources */,
 				186F1C662BF2771E00A2ADC2 /* Comic.swift in Sources */,
+				183A78BC2BF65A8C00CA8A4F /* NetworkImage.swift in Sources */,
 				186F1C622BF2745C00A2ADC2 /* ComicWebView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,11 +8,28 @@
 import SwiftUI
 
 struct NetworkImage: View {
+    let url: String
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        CacheAsyncImage(
+            url: URL(string: url)!
+        ){ phase in
+            switch phase {
+            case .success(let image):
+                image
+                    .resizable()
+                
+            case .failure(_):
+                Color.clear
+                    .frame(width: 180, height: 220)
+                
+            case .empty:
+                Color.clear
+                    .frame(width: 180, height: 220)
+                
+            @unknown default:
+                Color.clear
+                    .frame(width: 180, height: 220)
+            }
+        }
     }
-}
-
-#Preview {
-    NetworkImage()
 }

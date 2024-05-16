@@ -25,8 +25,8 @@ struct ComicsCarouselView: View {
                         if(comicThumbnail != nil){
                             NavigationLink(destination: ComicWebView(url: comicUrl ?? "")){
                                 VStack{
-                                    AsyncImage(url: URL(string: comicThumbnail!),
-                                               scale: 3)
+                                    NetworkImage(url: comicThumbnail ?? "")
+                                        .scaledToFill()
                                 }
                             }
                             .buttonStyle(PlainButtonStyle())
