@@ -14,11 +14,9 @@ struct ComicsCarouselView: View {
         VStack{
             
             ScrollView(.horizontal, showsIndicators: false){
-                HStack(alignment: .top) {
-                    let _ = print(comicViewModel.comics?.first?.title ?? "no title")
+                HStack(alignment: .top, spacing: 20) {
                     let comics=comicViewModel.comics?.filter{!$0.thumbnail.path!.contains("image_not_available")}
                     
-                    let _ = print(comics ?? "no title")
                     ForEach(comics ?? [], id: \.self){comic in
                         let comicThumbnail = comic.thumbnail.fullPath
                         let comicUrl = comic.urls?.filter{$0.type == "detail"}.first?.url
@@ -35,11 +33,11 @@ struct ComicsCarouselView: View {
                             .aspectRatio(contentMode: .fill)
                             .clipped()
                             .cornerRadius(16)
-                            .padding(.horizontal)
                             
                         }
                     }
                 }
+                .padding(.horizontal,20)
             }
             .containerRelativeFrame(.horizontal, alignment: .center)
             
@@ -49,8 +47,4 @@ struct ComicsCarouselView: View {
             comicViewModel.fetch(characterId: characterId)
         }
     }
-}
-
-#Preview {
-    ComicsCarouselView(characterId: 13943)
 }

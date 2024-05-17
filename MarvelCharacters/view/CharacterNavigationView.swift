@@ -20,20 +20,21 @@ struct CharacterNavigationView: View {
                     Text("Characters")
                         .font(.title2)
                     Divider()
+                        .padding(.bottom,32)
                     
-                    LazyVGrid(columns: adaptiveColumns) {
+                    LazyVGrid(columns: adaptiveColumns, spacing: 16) {
                         ForEach(characters ?? [], id: \.self){
                             character in
+                            let characterIndex = characters?.firstIndex(of: character) ?? 0
+                            let charactersList = characters ?? []
                             let thumbnailPath = character.thumbnail?.fullPath ?? ""
-                            let characterName = character.name
-                            let characterId = Int(character.id ?? 0)
-                            NavigationLink(destination: DetailView(characterName:characterName ?? "",thumbnailPath: thumbnailPath,characterId: characterId)){
+                            NavigationLink(destination: DetailView(charactersList: charactersList, characterIndex: characterIndex)){
                                 ZStack{
                                     NetworkImage(url: thumbnailPath)
                                         .scaledToFill()
                                         .aspectRatio(contentMode: .fill)
                                         .frame(width: 180, height: 220)
-                                        .overlay(LinearGradient(colors: [.black, .clear], startPoint: .bottom, endPoint: .top))
+                                        .overlay(LinearGradient(colors: [.black, .clear], startPoint: .bottom, endPoint: .center))
                                     Text("\(character.name ?? "")")
                                         .foregroundColor(.white)
                                         .font(.system(size: 18, weight: .medium,design: .rounded))
@@ -49,9 +50,10 @@ struct CharacterNavigationView: View {
                             
                             .background(.clear)
                             .cornerRadius(20)
-                            .padding()
+//                            .padding()
                         }
                     }
+                    .padding(.horizontal, 16)
                     
                 }
                 

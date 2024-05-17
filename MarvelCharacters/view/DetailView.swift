@@ -10,48 +10,81 @@ import SwiftUI
 struct DetailView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    let characterName:String
-    let thumbnailPath:String
-    let characterId:Int
+    let charactersList:[Character]
+    let characterIndex:Int
     
+    
+    @State private var currentCharacterIndex: Int
+    
+    init(charactersList: [Character], characterIndex: Int) {
+        self.charactersList = charactersList
+        self.characterIndex = characterIndex
+        _currentCharacterIndex = State(initialValue: characterIndex)
+    }
     var body: some View {
-        ZStack{
-            NetworkImage(url: thumbnailPath)
-                .scaledToFill()
-                                        .ignoresSafeArea()
-                                        .aspectRatio(contentMode: .fill)
-                                        .overlay(
-                                            LinearGradient(colors: [.black, .clear], startPoint: .top, endPoint: .bottom)
-                                        )
-            VStack{
-                Spacer()
-                ComicsCarouselView(characterId: characterId)
+        ScrollViewReader { value in
+            ScrollView(.vertical, showsIndicators: false) {
+                
+                LazyVStack(spacing: 0) {
+                    ForEach(0..<(charactersList.count), id: \.self) { i in
+                        let currentCharacterThumbnail=charactersList[i].thumbnail?.fullPath ?? ""
+                        let currentCharacterId=charactersList[i].id ?? 0
+                        ZStack{
+                            NetworkImage(url: currentCharacterThumbnail )
+                                .scaledToFill()
+                                .aspectRatio(contentMode: .fill)
+                                .overlay(
+                                    LinearGradient(colors: [.black, .clear], startPoint: UnitPoint(x: 0.0, y: 0.0), endPoint: UnitPoint(x: 0.0, y: 0.2))
+                                )
+                            VStack{
+                                Spacer()
+                                ComicsCarouselView(characterId: currentCharacterId)
+                                    .padding(.vertical)
+                            }
+                            
+                        }
+                        .onAppear {
+                            currentCharacterIndex = i
+                        }
+                        .containerRelativeFrame([.horizontal, .vertical])
+                    }
+                    
+                }
+            }
+            .onAppear {
+                value.scrollTo(characterIndex)
+                
+                let appearance = UINavigationBarAppearance()
+                appearance.configureWithTransparentBackground()
+                appearance.backgroundColor = .clear
+                appearance.shadowColor = .clear
+                
+                UINavigationBar.appearance().standardAppearance = appearance
+                UINavigationBar.appearance().compactAppearance = appearance
+                UINavigationBar.appearance().scrollEdgeAppearance = appearance
             }
             
         }
         .navigationBarBackButtonHidden(true)
-        .toolbar{ content:do {
-            ToolbarItem(placement: .topBarLeading){
-                Button{
+        .ignoresSafeArea()
+        .scrollTargetLayout()
+        .scrollTargetBehavior(.paging)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button {
                     presentationMode.wrappedValue.dismiss()
-                } label:{
+                } label: {
                     Image(systemName: "chevron.left")
                         .foregroundColor(.white)
                 }
             }
             ToolbarItem(placement: .principal) {
-                Text(characterName)
+                Text(charactersList[currentCharacterIndex].name ?? "")
                     .foregroundColor(.white)
-                    .font(.system(size: 32, weight: .medium,design: .rounded))
+                    .font(.system(size: 32, weight: .medium, design: .rounded))
             }
-            
         }
-        }
-        
     }
-    
 }
 
-#Preview {
-    DetailView(characterName: "3D-Man", thumbnailPath: "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg", characterId: 1)
-}
+
