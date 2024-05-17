@@ -72,11 +72,11 @@
 		18055E5B2BF0CD940094D8FC /* MarvelCharacters */ = {
 			isa = PBXGroup;
 			children = (
-				183A78B82BF6512600CA8A4F /* CacheAsyncImage */,
 				18055E922BF0FBA20094D8FC /* Info.plist */,
 				18055E602BF0CD950094D8FC /* Assets.xcassets */,
 				18055E5C2BF0CD940094D8FC /* MarvelCharactersApp.swift */,
 				186F1C632BF2754600A2ADC2 /* Services.swift */,
+				183A78B82BF6512600CA8A4F /* CacheAsyncImage */,
 				18055E8C2BF0D2080094D8FC /* viewmodel */,
 				18055E892BF0CF760094D8FC /* view */,
 				18055E8F2BF0D9D60094D8FC /* model */,

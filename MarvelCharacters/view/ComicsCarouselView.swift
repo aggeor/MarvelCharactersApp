@@ -29,7 +29,6 @@ struct ComicsCarouselView: View {
                             }
                             .task {
                                 if (comicViewModel.hasReachedEnd(of: comic)){
-                                    let _ = print("fetching..")
                                     comicViewModel.fetchNext(characterId: characterId)
                                 }
                             }

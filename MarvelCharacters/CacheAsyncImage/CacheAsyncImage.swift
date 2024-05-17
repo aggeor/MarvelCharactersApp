@@ -20,10 +20,8 @@ struct CacheAsyncImage<Content>: View where Content:View {
     }
     var body: some View {
         if let cached = ImageCache[url]{
-            let _ = print("Thumbnail already cached \(url.absoluteString)")
             content(.success(cached))
         } else {
-            let _ = print("Caching thumbnail \(url.absoluteString)")
             AsyncImage(url: url){ phase in
                 cacheAndRender(phase: phase)
             }

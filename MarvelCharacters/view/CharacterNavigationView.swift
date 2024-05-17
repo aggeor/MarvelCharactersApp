@@ -50,7 +50,6 @@ struct CharacterNavigationView: View {
                             
                             .background(.clear)
                             .cornerRadius(20)
-//                            .padding()
                         }
                     }
                     .padding(.horizontal, 16)
@@ -69,7 +68,3 @@ struct CharacterNavigationView: View {
     }
 }
 
-
-#Preview {
-    CharacterNavigationView()
-}

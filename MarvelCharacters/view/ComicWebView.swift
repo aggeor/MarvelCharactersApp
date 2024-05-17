@@ -33,7 +33,3 @@ struct WebView: UIViewRepresentable {
         webView.load(URLRequest(url: URL(string: url)!))
     }
 }
-
-#Preview {
-    ComicWebView(url: "http://marvel.com/comics/issue/10223/marvel_premiere_1972_35?utm_campaign=apiRef&utm_source=a5756515edff54cf6538f93b5c3844dc")
-}
