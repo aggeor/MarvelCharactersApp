@@ -14,7 +14,7 @@ struct ComicsCarouselView: View {
         VStack{
             
             ScrollView(.horizontal, showsIndicators: false){
-                HStack(alignment: .top, spacing: 20) {
+                LazyHStack(alignment: .bottom, spacing: 20) {
                     let comics=comicViewModel.comics?.filter{!$0.thumbnail.path!.contains("image_not_available")}
                     
                     ForEach(comics ?? [], id: \.self){comic in
@@ -27,12 +27,19 @@ struct ComicsCarouselView: View {
                                         .scaledToFill()
                                 }
                             }
+                            .task {
+                                if (comicViewModel.hasReachedEnd(of: comic)){
+                                    let _ = print("fetching..")
+                                    comicViewModel.fetchNext(characterId: characterId)
+                                }
+                            }
                             .buttonStyle(PlainButtonStyle())
                             .frame(width: 150, height: 250)
                             .scaledToFill()
                             .aspectRatio(contentMode: .fill)
                             .clipped()
                             .cornerRadius(16)
+                            
                             
                         }
                     }
