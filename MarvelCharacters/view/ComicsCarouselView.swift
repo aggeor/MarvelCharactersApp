@@ -23,8 +23,7 @@ struct ComicsCarouselView: View {
                         if(comicThumbnail != nil){
                             NavigationLink(destination: ComicWebView(url: comicUrl ?? "")){
                                 VStack{
-                                    NetworkImage(url: comicThumbnail ?? "")
-                                        .scaledToFill()
+                                    NetworkImage(url: comicThumbnail ?? "",gradient: nil)
                                 }
                             }
                             .task {

@@ -9,8 +9,11 @@ import SwiftUI
 
 struct CharacterNavigationView: View {
     private let adaptiveColumns = [
-        GridItem(.adaptive(minimum: 170))
+        GridItem(.flexible()),
+        GridItem(.flexible())
     ]
+    let frameWidth = UIScreen.main.bounds.width/2.38
+    let frameHeight = UIScreen.main.bounds.height/3.87
     @StateObject var characterViewModel =  CharacterListViewModel()
     var body: some View {
         NavigationView {
@@ -30,11 +33,7 @@ struct CharacterNavigationView: View {
                             let thumbnailPath = character.thumbnail?.fullPath ?? ""
                             NavigationLink(destination: DetailView(charactersList: charactersList, characterIndex: characterIndex)){
                                 ZStack{
-                                    NetworkImage(url: thumbnailPath)
-                                        .scaledToFill()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(width: 180, height: 220)
-                                        .overlay(LinearGradient(colors: [.black, .clear], startPoint: .bottom, endPoint: .center))
+                                    NetworkImage(url: thumbnailPath, gradient: LinearGradient(colors: [.black, .clear], startPoint: .bottom, endPoint: .center))
                                     Text("\(character.name ?? "")")
                                         .foregroundColor(.white)
                                         .font(.system(size: 18, weight: .medium,design: .rounded))
@@ -42,6 +41,7 @@ struct CharacterNavigationView: View {
                                         .padding()
                                 }
                             }
+                            .frame(width: frameWidth, height: frameHeight)
                             .task {
                                 if (characterViewModel.hasReachedEnd(of: character)){
                                     characterViewModel.fetchNext()

@@ -30,12 +30,7 @@ struct DetailView: View {
                         let currentCharacterThumbnail=charactersList[i].thumbnail?.fullPath ?? ""
                         let currentCharacterId=charactersList[i].id ?? 0
                         ZStack{
-                            NetworkImage(url: currentCharacterThumbnail )
-                                .scaledToFill()
-                                .aspectRatio(contentMode: .fill)
-                                .overlay(
-                                    LinearGradient(colors: [.black, .clear], startPoint: UnitPoint(x: 0.0, y: 0.0), endPoint: UnitPoint(x: 0.0, y: 0.2))
-                                )
+                            NetworkImage(url: currentCharacterThumbnail, gradient: LinearGradient(colors: [.black, .clear], startPoint: UnitPoint(x: 0.0, y: 0.0), endPoint: UnitPoint(x: 0.0, y: 0.2)))
                             VStack{
                                 Spacer()
                                 ComicsCarouselView(characterId: currentCharacterId)
