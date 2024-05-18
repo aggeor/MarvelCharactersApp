@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+
+/// Entry point of MarvelCharactersApp
 @main
 struct MarvelCharactersApp: App {
     var body: some Scene {

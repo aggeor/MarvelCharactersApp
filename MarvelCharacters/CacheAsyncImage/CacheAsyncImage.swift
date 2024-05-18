@@ -5,8 +5,19 @@
 //  Created by Aggelos Geo on 16/5/24.
 //
 
+
+// This source file is part of https://github.com/pitt500/Pokedex/
+//
+// Copyright (c) 2023 Pedro Rojas and project authors
+// Licensed under MIT License
+
+
 import SwiftUI
 
+
+/// `CacheAsyncImage` retrieves an image from a url if it's not yet loaded, or retrieves an image from the list of images in the cache
+///
+///  Code snippet used: [CacheAsyncImage.swift](https://github.com/pitt500/Pokedex/blob/main/Pokedex/Cache/CacheAsyncImage.swift)
 struct CacheAsyncImage<Content>: View where Content:View {
     private let url: URL
     private let content:(AsyncImagePhase) -> Content

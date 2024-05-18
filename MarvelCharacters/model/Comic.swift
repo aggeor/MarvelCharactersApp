@@ -7,6 +7,9 @@
 
 import Foundation
 
+// Comic data model based on the model from the Marvel API
+// [Marvel API](https://developer.marvel.com/docs#!/public/)
+
 struct ComicDataWrapper: Codable {
     let code: Int?
     let status: String?
@@ -35,6 +38,7 @@ struct Comic: Hashable, Codable{
 struct ComicThumbnail: Hashable, Codable{
     let path: String?
     let `extension`: String?
+    // Custom variable to get the full path of a thumbnail
     var fullPath:String?{
             "\(path ?? "").\(`extension` ?? "")"
     }

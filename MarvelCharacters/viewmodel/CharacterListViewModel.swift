@@ -7,10 +7,16 @@
 
 import Foundation
 
-
+/// `CharacterListViewModel` is a view model for the characters list
+///
+/// The purpose for this view model is to fetch the characters data and set them based on the `Character` model
+/// 
+/// Returns a `[Charater]?`
 class CharacterListViewModel: ObservableObject{
     @Published var characters:[Character]?=[]
     private var nextOffset=0
+    
+    /// Fetch the first batch of character data
     func fetchFirst(){
         let endpointUrl=getEndpointUrl()
         let timestamp=getTimestamp()
@@ -36,6 +42,7 @@ class CharacterListViewModel: ObservableObject{
         task.resume()
     }
     
+    /// Fetch the next batch of character data based on the `nextOffset`
     func fetchNext(){
         let endpointUrl=getEndpointUrl()
         let timestamp=getTimestamp()
@@ -66,14 +73,14 @@ class CharacterListViewModel: ObservableObject{
         task.resume()
     }
     
+    /// Helper function to determine if the current character is the last on the current list of characters
     func hasReachedEnd(of character:Character) -> Bool{
         characters?.last?.id == character.id
     }
     
+    /// Helper function to remove characters from the list that don't have a thumbnail image available
     func filterCharacters(){
         self.characters?=self.characters?.filter{!$0.thumbnail!.path!.contains("image_not_available")} ?? []
         self.characters?=self.characters?.filter{!$0.thumbnail!.path!.contains("4c002e0305708")} ?? []
-        
-        
     }
 }

@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+
+/// `NetworkImage` is a wrapper view for `CacheAsyncImage` that adjusts the size, scale, frame and gradient overlay
 struct NetworkImage: View {
     let url: String
     let gradient: LinearGradient?
